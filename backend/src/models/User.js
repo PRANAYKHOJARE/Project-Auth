@@ -4,16 +4,31 @@ const connectionUrl = await mongoose.connect(mongoURL);
 console.log("Connected to MongoDB", connectionUrl.connection.host);
 
 
-const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-    password: String,
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    password: {
+      type: String,
+    },
+
     googleId: {
-      type:String,
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
   }
-})
-
-
+);
 const UserModel = mongoose.model("Users", userSchema);
 
 
