@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/api/auth",
+  baseURL: `${import.meta.env.VITE_TODO_API_URL}/auth`,
 });
 
 export const registerUser = (data) => {
@@ -10,4 +10,4 @@ export const registerUser = (data) => {
 
 export const loginUser = (data) => {
   return API.post("/login", data);
-}
+};

@@ -39,10 +39,10 @@ function Signup() {
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/auth/google",
+        `${import.meta.env.VITE_TODO_API_URL}/auth/google`,
         {
           credential: credentialResponse.credential,
-        }
+        },
       );
 
       localStorage.setItem("token", res.data.token);
@@ -60,11 +60,9 @@ function Signup() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <div className="relative w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden">
         <div className="grid md:grid-cols-2 min-h-[560px]">
-          
           {/* Left Side */}
           <div className="flex items-center justify-center p-6 md:p-10">
             <div className="w-full max-w-sm">
-              
               <div className="flex justify-center mb-6">
                 <div className="w-14 h-14 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-2xl font-bold">
                   C
@@ -139,7 +137,6 @@ function Signup() {
 
           {/* Right Side */}
           <div className="hidden md:flex relative items-center justify-center overflow-hidden">
-            
             <div className="absolute top-0 left-1/4 w-48 h-48 rounded-full bg-purple-200 opacity-40"></div>
 
             <div className="absolute -top-8 right-16 w-32 h-32 rounded-full bg-orange-300 opacity-70"></div>
@@ -166,7 +163,6 @@ function Signup() {
               </p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
