@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
+console.log("MONGO_URL from index.js =", process.env.MONGO_URL);
 
 import cors from "cors";
 import express from "express";
