@@ -3,9 +3,12 @@ import { registerUser } from "../services/authSerices.js";
 import { useNavigate, Link } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../services/authSlice.js";
 
 function Signup() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -26,7 +29,7 @@ function Signup() {
     try {
       const res = await registerUser(formData);
 
-      localStorage.setItem("token", res.data.token);
+      dispatch(loginSuccess({ user: res.data.user, token: res.data.token }));
 
       alert("Registration Successful");
 
@@ -45,7 +48,7 @@ function Signup() {
         },
       );
 
-      localStorage.setItem("token", res.data.token);
+      dispatch(loginSuccess({ user: res.data.user, token: res.data.token }));
 
       alert("Google Signup Successful");
 

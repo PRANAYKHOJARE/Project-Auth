@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../services/authSlice.js";
 
 function Header() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleLogout() {
-    localStorage.removeItem("token");
+    dispatch(logout());
     navigate("/login");
   }
 

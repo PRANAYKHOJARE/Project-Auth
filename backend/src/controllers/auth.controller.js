@@ -39,10 +39,16 @@ export const registerUser = async (req, res) => {
       },
     );
 
-    res.status(201).json({
-      message: "User registered successfully",
-      token,
-    });
+   res.status(201).json({
+  message: "User registered successfully",
+  token,
+  user: {
+    id: User._id,
+    name: User.name,
+    email: User.email,
+    role: User.role,
+  },
+});
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -99,9 +105,15 @@ export const loginUser = async (req, res) => {
       },
     );
     res.status(200).json({
-      message: "login successfull",
-      token,
-    });
+  message: "login successful",
+  token,
+  user: {
+    id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  },
+});
   } catch (error) {
     res.status(500).json({
       message: error.message,
