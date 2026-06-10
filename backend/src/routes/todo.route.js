@@ -10,7 +10,9 @@ router.get("/", authMiddleware, async (req, res) => {
   try {
     const todos = await Todo.find({
       user: req.user.id,
-    }).sort({ createdAt: -1 });
+    })
+      .populate("user", "email name")
+      .sort({ createdAt: -1 });
 
     res.status(200).json(todos);
   } catch (err) {
